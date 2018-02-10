@@ -2750,6 +2750,7 @@ class Build
     {
         if (!$this->Project) {
             $this->Project = new Project();
+            $this->Project->Id = $this->ProjectId;
         }
         return $this->Project;
     }
