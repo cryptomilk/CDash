@@ -299,4 +299,9 @@ class DynamicAnalysisHandler extends AbstractHandler implements ActionableBuildI
     {
         return $this->Builds;
     }
+
+    public function getProjectId()
+    {
+        // TODO: Implement getProjectId() method.
+    }
 }

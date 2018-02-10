@@ -294,4 +294,9 @@ class ConfigureHandler extends AbstractHandler implements ActionableBuildInterfa
     {
         return new BuildCollection($this->Builds);
     }
+
+    public function getProjectId()
+    {
+        // TODO: Implement getProjectId() method.
+    }
 }
