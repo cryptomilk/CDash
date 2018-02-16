@@ -18,6 +18,8 @@ namespace CDash\Model;
 require_once  'include/common.php';
 require_once 'include/cdashmail.php';
 
+use CDash\Collection\SubscriberCollection;
+
 use CDash\Config;
 use CDash\Database;
 use CDash\ServiceContainer;
@@ -71,6 +73,11 @@ class Project
     public $WebApiKey;
     /** @var \PDO $PDO */
     private $PDO;
+
+    /**
+     * @var SubscriberCollection
+     */
+    private $SubscriberCollection;
 
     public function __construct()
     {
@@ -1655,8 +1662,20 @@ class Project
         return true;
     }
 
-    public function GetProjectSubscribers()
+    /**
+     * @returns \CDash\Collection\SubscriberCollection
+     */
+    public function GetSubscriberCollection()
     {
-        // TODO: create method
+        if (!$this->SubscriberCollection) {
+            $this->SubscriberCollection = new SubscriberCollection();
+        }
+
+        return $this->SubscriberCollection;
+    }
+
+    public function SetSubscriberCollection(SubscriberCollection $subscribers)
+    {
+        $this->SubscriberCollection = $subscribers;
     }
 }
