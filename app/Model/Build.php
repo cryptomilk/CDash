@@ -2794,7 +2794,7 @@ class Build
         return $this->CommitAuthors;
     }
 
-    public function GetLabelNames()
+    public function GetLabelNames(array $labels = [])
     {
         // TODO: This method reveals that Labels are being set twice, probably in the handler, fix
         return array_unique(array_map(function ($label) {
