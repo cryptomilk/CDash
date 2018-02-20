@@ -427,4 +427,9 @@ class TestingHandler extends AbstractHandler implements ActionableBuildInterface
     {
         // TODO: remove
     }
+
+    public function GetSite()
+    {
+        return $this->Site;
+    }
 }
