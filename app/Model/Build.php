@@ -2160,6 +2160,17 @@ class Build
         pdo_execute($stmt, [$numWarnings, $this->Id]);
     }
 
+    /**
+     * @return int|null
+     */
+    public function GetNumberOfConfigureWarnings()
+    {
+        if ($this->BuildConfigure) {
+            return $this->BuildConfigure->NumberOfWarnings;
+        }
+        return null;
+    }
+
     /** Set number of configure errors for this build. */
     public function SetNumberOfConfigureErrors($numErrors)
     {
@@ -2178,6 +2189,17 @@ class Build
                 "/viewConfigure.php?buildid=$this->Id";
             $this->NotifyPullRequest($message, $url);
         }
+    }
+
+    /**
+     * @return int|null
+     */
+    public function GetNumberOfConfigureErrors()
+    {
+        if ($this->BuildConfigure) {
+            return $this->BuildConfigure->NumberOfErrors;
+        }
+        return null;
     }
 
     /**
@@ -2697,5 +2719,25 @@ class Build
         add_log($error . PHP_EOL . $e->getTraceAsString(), 'AddBuild', LOG_ERR,
                 $this->ProjectId);
         return false;
+    }
+
+    /**
+     * @return BuildConfigure
+     */
+    public function GetBuildConfigure()
+    {
+        if (!$this->BuildConfigure) {
+            $this->BuildConfigure = new BuildConfigure();
+            $this->BuildConfigure->BuildId = $this->Id;
+        }
+        return $this->BuildConfigure;
+    }
+
+    /**
+     * @param BuildConfigure $buildConfigure
+     */
+    public function SetBuildConfigure(BuildConfigure $buildConfigure)
+    {
+        $this->BuildConfigure = $buildConfigure;
     }
 }
