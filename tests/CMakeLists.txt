@@ -56,6 +56,7 @@ add_unit_test(/CDash/Model/BuildError)
 add_unit_test(/CDash/Model/BuildFailure)
 add_unit_test(/CDash/ServiceContainer)
 add_unit_test(/CDash/TestUseCase)
+add_unit_test(/CDash/UpdateUseCase)
 
 add_php_test(install)
 add_php_test(compressedtest)
