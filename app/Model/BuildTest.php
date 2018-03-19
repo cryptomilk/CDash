@@ -18,6 +18,7 @@ namespace CDash\Model;
 /** Build Test class */
 class BuildTest
 {
+    public $Id;
     public $TestId;
     public $Status;
     public $Time;
