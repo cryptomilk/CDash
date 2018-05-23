@@ -1692,7 +1692,8 @@ class Project
     {
         $service = ServiceContainer::getInstance()->getContainer();
         $collection = $service->make(SubscriberCollection::class);
-        $sql = 'SELECT
+        $sql = '
+            SELECT
               u2p.*,
               user.email email
             FROM user2project u2p
@@ -1712,7 +1713,10 @@ class Project
             );
             /** @var Subscriber $subscriber */
             $subscriber = $service->make(Subscriber::class, ['preferences' => $preferences]);
-            $subscriber->setAddress($row->email);
+            $subscriber
+                ->setAddress($row->email)
+                ->setUserId($row->userid);
+
             $collection->add($subscriber);
         }
 
