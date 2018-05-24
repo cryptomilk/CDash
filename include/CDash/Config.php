@@ -67,13 +67,13 @@ class Config extends Singleton
      */
     public function getBaseUrl()
     {
-        $uri = $this->get('CDASH_BASE_URL');
+        $uri = rtrim($this->get('CDASH_BASE_URL'), '/');
 
         if (!$uri) {
             $protocol = $this->getProtocol();
-            $server = rtrim($this->getServer(), "/");
+            $server = $this->getServer();
             $port = $this->getServerPort();
-            $uri = "{$protocol}://{$server}";
+            $uri = rtrim("{$protocol}://{$server}", '/');
 
             if ($port) {
                 $uri = "{$uri}:{$port}";
@@ -81,7 +81,7 @@ class Config extends Singleton
 
             $uri = "{$uri}{$_SERVER['REQUEST_URI']}";
         }
-        
+
         return $uri;
     }
 
