@@ -71,7 +71,7 @@ class Config extends Singleton
 
         if (!$uri) {
             $protocol = $this->getProtocol();
-            $server = $this->getServer();
+            $server = rtrim($this->getServer(), "/");
             $port = $this->getServerPort();
             $uri = "{$protocol}://{$server}";
 
@@ -81,11 +81,7 @@ class Config extends Singleton
 
             $uri = "{$uri}{$_SERVER['REQUEST_URI']}";
         }
-        // strip trailing slash
-        if (strrpos($uri, '/') === 0) {
-            $uri = substr($uri, 0, (strlen($uri) - 1));
-        }
-
+        
         return $uri;
     }
 
